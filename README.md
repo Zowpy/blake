@@ -5,7 +5,7 @@ Simple Jedis API coded in kotlin.
 # Setting Up Blake
 
 # Credentials
-```java
+```kotlin
 val redisCredentials = RedisCredential("127.0.0.1", 6379, false, "") # normal mode
 ```
 
