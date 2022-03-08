@@ -14,13 +14,13 @@ The Jedis API supports URIs
 URI format: "redis://host:port/password"
  
 Using URI mode:
-```java
+```kotlin
  val redisCredentials = BlakeRedisURI("redis://127.0.0.1:6379/").toCredential()
  ```
  
 Creating the Blake instance
 
-```java
+```kotlin
 val blake = BlakeBuilder()
   .setCredentials(redisCredentials)
   .setChannel("test") # redis channel name
@@ -30,7 +30,7 @@ val blake = BlakeBuilder()
 
 # Using Blake
 
-```java
+```kotlin
 @IncomingMessage("test", BlakeThreadContext.ASYNC) # first parameter is the payload, the second option is the thread context, you can choose between ASYNC & SYNC
 fun test() {
   println("test")
