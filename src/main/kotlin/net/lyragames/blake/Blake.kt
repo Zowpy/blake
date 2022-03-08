@@ -23,6 +23,7 @@ class Blake(
     var subscriberContainer: BlakeSubscriberContainer
 )
 {
+
     val thread: Executor = Executors.newSingleThreadExecutor()
     private var jedisHandler: JedisHandler = JedisHandler(this)
 
