@@ -2,8 +2,6 @@
  
 Simple Jedis API coded in kotlin.
 
-## Documentation
-
 # Setting Up Blake
 
 # Credentials
