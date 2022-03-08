@@ -1,8 +1,10 @@
 package net.lyragames.blake
 
+import com.google.gson.JsonObject
 import net.lyragames.blake.container.BlakeSubscriberContainer
 import net.lyragames.blake.credential.RedisCredential
 import net.lyragames.blake.jedis.JedisHandler
+import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 
@@ -21,7 +23,18 @@ class Blake(
     var subscriberContainer: BlakeSubscriberContainer
 )
 {
+    val thread: Executor = Executors.newSingleThreadExecutor()
+    private var jedisHandler: JedisHandler = JedisHandler(this)
 
-    val thread = Executors.newSingleThreadExecutor()
-    var jedisHandler: JedisHandler = JedisHandler(this)
+    private fun write(payload: String, data: String) {
+        jedisHandler.publish("${payload}//${data}")
+    }
+
+    fun write(payload: String, data: JsonObject) {
+        write(payload, data.toString())
+    }
+
+    fun write(payload: String) {
+        write(payload, "{}")
+    }
 }

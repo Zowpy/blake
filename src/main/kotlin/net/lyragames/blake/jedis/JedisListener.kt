@@ -37,9 +37,19 @@ class JedisListener(private val blake: Blake): JedisPubSub() {
         val incomingMessage = command.value.getAnnotation(IncomingMessage::class.java)
 
         if (incomingMessage.threadContext == BlakeThreadContext.SYNC) {
+            if (command.value.parameterCount == 0) {
+                command.value.invoke(command.key)
+                return
+            }
             command.value.invoke(command.key, data.asJsonObject)
         }else if (incomingMessage.threadContext == BlakeThreadContext.ASYNC) {
-            blake.thread.execute { command.value.invoke(command.key, data.asJsonObject) }
+            blake.thread.execute {
+                if (command.value.parameterCount == 0) {
+                    command.value.invoke(command.key)
+                    return@execute
+                }
+                command.value.invoke(command.key, data.asJsonObject)
+            }
         }
 
     }
