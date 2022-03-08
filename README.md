@@ -12,7 +12,7 @@ val redisCredentials = RedisCredential("127.0.0.1", 6379, false, "") # normal mo
 ```
 
 The Jedis API supports URIs 
-URI format: "redis://<host>:<port>/<password>"
+URI format: "redis://host:port/password"
  
 Using URI mode:
 ```java
