@@ -30,6 +30,15 @@ val blake = BlakeBuilder()
 
 # Using Blake
 
+Java
+```java
+@IncomingMessage("test", BlakeThreadContext.ASYNC) // first parameter is the payload, the second option is the thread context, you can choose between ASYNC & SYNC
+public void test(JsonObject jsonObject) {
+  System.out.println(jsonObject.get("key"));
+}
+```
+
+Kotlin
 ```kotlin
 @IncomingMessage("test", BlakeThreadContext.ASYNC) // first parameter is the payload, the second option is the thread context, you can choose between ASYNC & SYNC
 fun test() {
