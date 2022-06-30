@@ -24,12 +24,21 @@ Creating the Blake instance
 val blake = BlakeBuilder()
   .setCredentials(redisCredentials)
   .setChannel("test") // redis channel name
-  .register(this) // registers the given instance
+  .register(this) // provide instance of the class which contains @IncomingMessage annotation
   .build() // builds the blake instance
 ```
 
 # Using Blake
 
+Java
+```java
+@IncomingMessage("test", BlakeThreadContext.ASYNC) // first parameter is the payload, the second option is the thread context, you can choose between ASYNC & SYNC
+public void test(JsonObject jsonObject) {
+  System.out.println(jsonObject.get("key"));
+}
+```
+
+Kotlin
 ```kotlin
 @IncomingMessage("test", BlakeThreadContext.ASYNC) // first parameter is the payload, the second option is the thread context, you can choose between ASYNC & SYNC
 fun test() {
