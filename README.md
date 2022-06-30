@@ -24,7 +24,7 @@ Creating the Blake instance
 val blake = BlakeBuilder()
   .setCredentials(redisCredentials)
   .setChannel("test") // redis channel name
-  .register(this) // registers the given instance
+  .register(this) // provide instance of the class which contains @IncomingMessage annotation
   .build() // builds the blake instance
 ```
 
